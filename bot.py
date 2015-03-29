@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sleekxmpp
 import json
+import time
 
 user = raw_input("Usuario >> ")
 password = raw_input("Contraseña >> ")
@@ -40,8 +41,9 @@ class EchoBot(sleekxmpp.ClientXMPP):
 
         print "Enviado a: %s" % a['from']
         self.enviados.append(str(a['from']))
-        open("enviados.json", "w").write(json.dumps(self.enviados))
+        open("enviados.json", "w").write(json.dumps(self.enviados, indent=4))
         self.send_message(a['from'], mensaje)
+	time.sleep(2)
 
 if __name__ == "__main__":
     xmpp = EchoBot()
